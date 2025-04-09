@@ -1,0 +1,13 @@
+﻿**/.user
+**/bin
+**/obj
+*.http
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+*.swp
+.idea
+.vscode
+Properties/
