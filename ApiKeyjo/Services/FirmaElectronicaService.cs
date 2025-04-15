@@ -6,10 +6,15 @@ public class FirmaElectronicaService
 {
     private readonly HttpClient _client;
 
-    public FirmaElectronicaService(IHttpClientFactory clientFactory)
+    public FirmaElectronicaService(IHttpClientFactory clientFactory, string ambiente="00")
     {
         _client = clientFactory.CreateClient("FirmaService");
-        _client.BaseAddress = new Uri("http://207.58.175.220:8113/");
+        _client.BaseAddress = new Uri("http://207.58.175.219:8113/");
+        if (ambiente=="01")
+        {
+            _client.BaseAddress = new Uri("http://44.204.189.104:8114/");
+        }
+        
         _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 

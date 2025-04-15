@@ -1,0 +1,12 @@
+﻿docker build -t prehack77/apikeyo:latest .
+docker push prehack77/apikeyo:latest
+
+
+en el server 
+
+borrar si hay otra de la misma
+
+docker stop apikeyo_container
+docker rm apikeyo_container
+docker pull prehack77/apikeyo:latest
+docker run -d --name apikeyo_container -p 7122:7122 -e ASPNETCORE_URLS="http://+:7122" prehack77/apikeyo:latest

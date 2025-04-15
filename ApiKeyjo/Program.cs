@@ -180,6 +180,6 @@ app.MapPost("/api/anular-dte", async (
 });
 
 
-app.Run("https://*:7122");
+app.Run("http://*:7122");
 
 
