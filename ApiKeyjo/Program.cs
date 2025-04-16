@@ -226,11 +226,32 @@ app.MapPost("/api/generarpruebasdte", async (
         requestData.TryGetProperty("PasswordPrivado", out var PasswordPrivado);
         requestData.TryGetProperty("VersionDte", out var VersionDte);
         requestData.TryGetProperty("NRC", out var NRC);
+        requestData.TryGetProperty("fecha", out var fecha);
 
 
+        // para nota de credito 
+        // Declaración de variables
+        string codGeneracion = string.Empty;
+        int vueltas = 90;
+        int inicio = 1000;
+        if (requestData.TryGetProperty("codgeneracion", out var codgeneracion) &&
+            requestData.TryGetProperty("vueltas", out var vueltas1))
+        {
+            codGeneracion = codgeneracion.GetString(); // Asignación de valor string
+            if (vueltas1.ValueKind == JsonValueKind.Number && vueltas1.TryGetInt32(out vueltas))
+            {
+                // Asignación de valor int ya realizada
+            }
+        }
+        requestData.TryGetProperty("inicio", out var inicio1);
 
+         if (inicio1.ValueKind == JsonValueKind.Number && inicio1.TryGetInt32(out inicio))
+        {
+            // Asignación de valor int ya realizada
+        }
+        int limite=inicio+ vueltas;
 
-        for (int i = 2000; i < 2026; i++)
+        for (int i = inicio; i < limite; i++)
         {
             Guid codigoGeneracion = Guid.NewGuid();
             string ncontrol = "";
@@ -811,8 +832,8 @@ app.MapPost("/api/generarpruebasdte", async (
         {
             tipoDocumento = "03",
             tipoGeneracion = 2,
-            numeroDocumento = "78C79A42-76C2-4BDE-A587-DCD0380BED64",
-            fechaEmision = "2025-04-15"
+            numeroDocumento = codGeneracion,
+            fechaEmision = fecha.ToString()
         }
     };
 
@@ -859,7 +880,7 @@ app.MapPost("/api/generarpruebasdte", async (
         {
             numItem = 1,
             tipoItem = 3,
-            numeroDocumento = "78C79A42-76C2-4BDE-A587-DCD0380BED64",
+            numeroDocumento = codGeneracion,
             cantidad = 1,
             codigo = "000002",
             codTributo = (string?)null,
@@ -941,7 +962,7 @@ app.MapPost("/api/generarpruebasdte", async (
             };
 
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var tarea = client.PostAsJsonAsync("https://localhost:7122/api/procesar-dte", dteRequestCompleto);
+            var tarea = client.PostAsJsonAsync("http://207.58.175.219:7122/api/procesar-dte", dteRequestCompleto);
             tareasProcesamiento.Add(tarea);
         }
 
@@ -987,6 +1008,6 @@ app.MapPost("/api/generarpruebasdte", async (
     }
 });
 
-app.Run("https://*:7122");
+app.Run("http://*:7122");
 
 

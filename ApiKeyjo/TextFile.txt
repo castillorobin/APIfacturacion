@@ -10,3 +10,119 @@ docker stop apikeyo_container
 docker rm apikeyo_container
 docker pull prehack77/apikeyo:latest
 docker run -d --name apikeyo_container -p 7122:7122 -e ASPNETCORE_URLS="http://+:7122" prehack77/apikeyo:latest
+
+
+
+
+para las pruebas 
+
+usar la api en postman 
+
+https://localhost:7122/api/generarpruebasdte
+
+json nota credito primero ejecutar los de ccf y guardar un codigo de generacion y enviarlo asi como en el ejemplo
+
+{
+  "Usuario": "04352208241018",
+  "Password": "Keyjo@2025",
+  "Ambiente": "00",
+  "DteJson": "tu_documento_json",
+  "Nit": "04352208241018",
+  "PasswordPrivado": "Keyjo@Pri9",
+  "TipoDte": "05",
+  "VersionDte": "3",
+  "NRC":"3477200",
+  "vueltas":4,
+   "inicio":4000,
+  "codgeneracion":"75210F23-B86A-4993-8C3A-9257C295D7A5",
+  "fecha":"2025-04-16"
+}
+
+
+
+json ccf 
+{
+  "Usuario": "04352208241018",
+  "Password": "Keyjo@2025",
+  "Ambiente": "00",
+  "DteJson": "tu_documento_json",
+  "Nit": "04352208241018",
+  "PasswordPrivado": "Keyjo@Pri9",
+  "TipoDte": "03",
+    "VersionDte": "3",
+  "NRC":"3477200",
+"vueltas":4,
+   "inicio":4000,
+  "codgeneracion":"75210F23-B86A-4993-8C3A-9257C295D7A5",
+  "fecha":"2025-04-16"
+
+
+}
+
+
+json cf 
+{
+  "Usuario": "04352208241018",
+  "Password": "Keyjo@2025",
+  "Ambiente": "00",
+  "DteJson": "tu_documento_json",
+  "Nit": "04352208241018",
+  "PasswordPrivado": "Keyjo@Pri9",
+  "TipoDte": "01",
+   "VersionDte": "1",
+  "NRC":"3477200",
+"vueltas":4,
+   "inicio":4000,
+  "codgeneracion":"75210F23-B86A-4993-8C3A-9257C295D7A5",
+  "fecha":"2025-04-16"
+
+
+}
+
+
+json sujeto 
+
+
+{
+  "Usuario": "04352208241018",
+  "Password": "Keyjo@2025",
+  "Ambiente": "00",
+  "DteJson": "tu_documento_json",
+  "Nit": "04352208241018",
+  "PasswordPrivado": "Keyjo@Pri9",
+  "TipoDte": "14",
+    "VersionDte": "1",
+  "NRC":"3477200",
+"vueltas":4,
+   "inicio":4000,
+  "codgeneracion":"75210F23-B86A-4993-8C3A-9257C295D7A5",
+  "fecha":"2025-04-16"
+
+
+}
+
+
+json exportacion 
+
+
+{
+  "Usuario": "04352208241018",
+  "Password": "Keyjo@2025",
+  "Ambiente": "00",
+  "DteJson": "tu_documento_json",
+  "Nit": "04352208241018",
+  "PasswordPrivado": "Keyjo@Pri9",
+  "TipoDte": "11",
+    "VersionDte": "1",
+  "NRC":"3477200",
+"vueltas":4,
+   "inicio":4000,
+  "codgeneracion":"75210F23-B86A-4993-8C3A-9257C295D7A5",
+  "fecha":"2025-04-16"
+
+
+}
+
+
+En las notas de credito es de guardar un codigo de generacion de un credito fiscal editarlo y luego correr las pruebas
+
