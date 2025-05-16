@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
-// Servicio para enviar el DTE (optimizado)
+
 public class RecepcionDTEService
 {
     private readonly IHttpClientFactory _clientFactory;
@@ -37,25 +37,47 @@ public class RecepcionDTEService
         var json = JsonConvert.SerializeObject(requestBody);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+        HttpResponseMessage response = null;
+        string responseData = null;
+
         try
         {
-            var response = await client.PostAsync("/fesv/recepciondte", content);
-            var responseData = await response.Content.ReadAsStringAsync();
+            response = await client.PostAsync("/fesv/recepciondte", content);
+            responseData = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
                 return responseData;
             }
-            else
+
+            // Si llega aquí, la respuesta no fue exitosa
+            var errorMessage = $"Error en el envío del DTE. Estado: {response.StatusCode}. Respuesta: {responseData}";
+            throw new HttpRequestException(errorMessage, null, response.StatusCode);
+        }
+        catch (HttpRequestException httpEx)
+        {
+            // Para errores HTTP (incluyendo respuestas no exitosas)
+            var errorDetails = new
             {
-                throw new Exception($"Error en el envío del DTE: {response.StatusCode}. Detalles: {responseData}");
-            }
+                Error = httpEx.Message,
+                StatusCode = httpEx.StatusCode,
+                Response = responseData,
+                RequestBody = requestBody
+            };
+
+            throw new Exception(JsonConvert.SerializeObject(errorDetails, Formatting.Indented), httpEx);
         }
         catch (Exception ex)
         {
-            throw new Exception($"Error al enviar el DTE: {ex.Message}", ex);
+            // Para otros tipos de errores
+            var errorDetails = new
+            {
+                Error = ex.Message,
+                Response = responseData,
+                RequestBody = requestBody
+            };
+
+            throw new Exception(JsonConvert.SerializeObject(errorDetails, Formatting.Indented), ex);
         }
     }
 }
-
-
