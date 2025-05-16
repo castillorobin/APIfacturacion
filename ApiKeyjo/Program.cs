@@ -9,7 +9,19 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
+// Añadir configuración CORS que permite cualquier origen
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()   // Permite cualquier origen
+              .AllowAnyMethod()   // Permite cualquier método HTTP (GET, POST, PUT, DELETE, etc.)
+              .AllowAnyHeader();  // Permite cualquier cabecera HTTP
+    });
+});
 
 // Add services to the container
 builder.Services.AddEndpointsApiExplorer();
@@ -31,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowAll");
 // Endpoint optimizado
 app.MapPost("/api/procesar-dte", async (
     HttpContext context,
@@ -1008,6 +1020,6 @@ app.MapPost("/api/generarpruebasdte", async (
     }
 });
 
-app.Run("http://*:7122");
+app.Run("https://*:7122");
 
 

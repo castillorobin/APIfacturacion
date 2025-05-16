@@ -1,4 +1,6 @@
-﻿docker build -t prehack77/apikeyo:latest .
+﻿
+
+docker build -t prehack77/apikeyo:latest .
 docker push prehack77/apikeyo:latest
 
 
@@ -23,8 +25,8 @@ https://localhost:7122/api/generarpruebasdte
 json nota credito primero ejecutar los de ccf y guardar un codigo de generacion y enviarlo asi como en el ejemplo
 
 {
-  "Usuario": "04352208241018",
-  "Password": "Keyjo@2025",
+  "Usuario": "0435221018",
+  "Password": "Key025",
   "Ambiente": "00",
   "DteJson": "tu_documento_json",
   "Nit": "04352208241018",
@@ -42,8 +44,8 @@ json nota credito primero ejecutar los de ccf y guardar un codigo de generacion 
 
 json ccf 
 {
-  "Usuario": "04352208241018",
-  "Password": "Keyjo@2025",
+  "Usuario": "04358241018",
+  "Password": "Key2025",
   "Ambiente": "00",
   "DteJson": "tu_documento_json",
   "Nit": "04352208241018",
@@ -62,8 +64,8 @@ json ccf
 
 json cf 
 {
-  "Usuario": "04352208241018",
-  "Password": "Keyjo@2025",
+  "Usuario": "0435241018",
+  "Password": "Keyj25",
   "Ambiente": "00",
   "DteJson": "tu_documento_json",
   "Nit": "04352208241018",
@@ -84,8 +86,8 @@ json sujeto
 
 
 {
-  "Usuario": "04352208241018",
-  "Password": "Keyjo@2025",
+  "Usuario": "04352241018",
+  "Password": "Keyj5",
   "Ambiente": "00",
   "DteJson": "tu_documento_json",
   "Nit": "04352208241018",
@@ -106,8 +108,8 @@ json exportacion
 
 
 {
-  "Usuario": "04352208241018",
-  "Password": "Keyjo@2025",
+  "Usuario": "043541018",
+  "Password": "Keyj25",
   "Ambiente": "00",
   "DteJson": "tu_documento_json",
   "Nit": "04352208241018",
