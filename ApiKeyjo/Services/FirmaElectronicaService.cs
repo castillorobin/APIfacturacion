@@ -9,7 +9,7 @@ public class FirmaElectronicaService
     public FirmaElectronicaService(IHttpClientFactory clientFactory, string ambiente="00")
     {
         _client = clientFactory.CreateClient("FirmaService");
-        _client.BaseAddress = new Uri("http://207.58.175.219:8113/");
+        _client.BaseAddress = new Uri("http://34.198.24.200:8113/");
         if (ambiente=="01")
         {
             _client.BaseAddress = new Uri("http://207.58.175.219:8114/");
